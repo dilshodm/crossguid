@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include <iostream>
 #include <array>
 #include <sstream>
-#include <string_view>
+#include <string>
 #include <utility>
 #include <iomanip>
 
@@ -52,9 +52,9 @@ public:
 	explicit Guid(const std::array<unsigned char, 16> &bytes);
 	explicit Guid(std::array<unsigned char, 16> &&bytes);
 
-	explicit Guid(std::string_view fromString);
+	explicit Guid(const std::string &fromString);
 	Guid();
-	
+
 	Guid(const Guid &other) = default;
 	Guid &operator=(const Guid &other) = default;
 	Guid(Guid &&other) = default;
@@ -107,7 +107,7 @@ namespace details
 {
 	template <typename...> struct hash;
 
-	template<typename T> 
+	template<typename T>
 	struct hash<T> : public std::hash<T>
 	{
 		using std::hash<T>::hash;
